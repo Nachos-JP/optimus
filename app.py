@@ -1,3 +1,4 @@
+import os
 import json
 
 import tornado.websocket
@@ -38,13 +39,16 @@ class CheckAppUrlHandler(tornado.web.RequestHandler):
         self.write(json.dumps(return_value))
 
 
-app = tornado.web.Application([
-    (r"/", WebSocket),
-    (r"/check_url", CheckAppUrlHandler),
-])
+app = tornado.web.Application(
+    [
+        (r"/", WebSocket),
+        (r"/check_url", CheckAppUrlHandler),
+    ],
+    debug = True if os.environ["ENV"]=="development" else False,
+)
 
 
 if __name__ == "__main__":
     print("start tornado server")
-    app.listen(8989)
+    app.listen(os.environ["PORT"])
     tornado.ioloop.IOLoop.current().start()

@@ -4,8 +4,11 @@ services:
     build: ./build
     restart: always
     volumes:
-      - .:/usr/src
-    working_dir: "/usr/src"
+      - .:/usr/src/optimus
+    working_dir: "/usr/src/optimus"
     tty: true
+    environment:
+      ENV: development
+      PORT: 8989
     ports:
       - "8989:8989"
