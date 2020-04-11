@@ -1,0 +1,11 @@
+version: "2"
+services:
+  dev:
+    build: ./build
+    restart: always
+    volumes:
+      - .:/usr/src
+    working_dir: "/usr/src"
+    tty: true
+    ports:
+      - "8989:8989"

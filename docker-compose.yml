@@ -1,0 +1,11 @@
+version: "2"
+services:
+  app:
+    build: ./build
+    restart: always
+    volumes:
+      - .:/usr/src
+    working_dir: "/usr/src"
+    command: python app.py
+    ports:
+      - "8989:8989"
